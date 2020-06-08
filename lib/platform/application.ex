@@ -7,10 +7,6 @@ defmodule Platform.Application do
 
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      Platform.Repo,
-      # Start the Telemetry supervisor
-      PlatformWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Platform.PubSub},
       # Start the Endpoint (http/https)

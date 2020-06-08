@@ -51,13 +51,6 @@ defmodule PlatformWeb do
     end
   end
 
-  def channel do
-    quote do
-      use Phoenix.Channel
-      import PlatformWeb.Gettext
-    end
-  end
-
   defp view_helpers do
     quote do
       # Use all HTML functionality (forms, tags, etc)

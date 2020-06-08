@@ -31,13 +31,7 @@ defmodule PlatformWeb.ConnCase do
     end
   end
 
-  setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Platform.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Platform.Repo, {:shared, self()})
-    end
-
+  setup _ do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end
