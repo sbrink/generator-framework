@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white mb-3 border-bottom">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <%= link to: "/", class: "navbar-brand" do %>
+      UI generators
+    <% end %>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <ul class="navbar-nav mr-auto ml-auto">
+        <%= content_tag :li, class: "nav-item" do %>
+          <%= link "Generators", to: "#", class: "nav-link" %>
+        <% end %>
+    </div>
+  </div>
+</nav>
