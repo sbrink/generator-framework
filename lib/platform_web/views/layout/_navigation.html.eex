@@ -7,7 +7,7 @@
       UI generators
     <% end %>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <ul class="navbar-nav mr-auto ml-auto">
+      <ul class="navbar-nav">
         <%= content_tag :li, class: "nav-item" do %>
           <%= link "Generators", to: "#", class: "nav-link" %>
         <% end %>

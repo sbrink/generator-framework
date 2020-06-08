@@ -4,8 +4,8 @@ defmodule Platform.Core.Generators.Generator do
 
   schema "generators" do
     field :name, :string
-
-    timestamps()
+    field :func, :string
+    field :templates, :string
   end
 
   @doc false

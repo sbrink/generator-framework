@@ -5,17 +5,17 @@ defmodule PlatformWeb.GeneratorController do
   alias Platform.Core.Generators.Generator
 
   def index(conn, _params) do
-    generators = Generators.list_generators()
+    generators = Generators.list()
     render(conn, "index.html", generators: generators)
   end
 
   def new(conn, _params) do
-    changeset = Generators.change_generator(%Generator{})
+    changeset = Generators.change(%Generator{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"generator" => generator_params}) do
-    case Generators.create_generator(generator_params) do
+    case Generators.create(generator_params) do
       {:ok, generator} ->
         conn
         |> put_flash(:info, "Generator created successfully.")
@@ -27,20 +27,20 @@ defmodule PlatformWeb.GeneratorController do
   end
 
   def show(conn, %{"id" => id}) do
-    generator = Generators.get_generator!(id)
+    generator = Generators.get!(id)
     render(conn, "show.html", generator: generator)
   end
 
   def edit(conn, %{"id" => id}) do
-    generator = Generators.get_generator!(id)
-    changeset = Generators.change_generator(generator)
+    generator = Generators.get!(id)
+    changeset = Generators.change(generator)
     render(conn, "edit.html", generator: generator, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "generator" => generator_params}) do
-    generator = Generators.get_generator!(id)
+    generator = Generators.get!(id)
 
-    case Generators.update_generator(generator, generator_params) do
+    case Generators.update(generator, generator_params) do
       {:ok, generator} ->
         conn
         |> put_flash(:info, "Generator updated successfully.")
@@ -52,8 +52,8 @@ defmodule PlatformWeb.GeneratorController do
   end
 
   def delete(conn, %{"id" => id}) do
-    generator = Generators.get_generator!(id)
-    {:ok, _generator} = Generators.delete_generator(generator)
+    generator = Generators.get!(id)
+    {:ok, _generator} = Generators.delete(generator)
 
     conn
     |> put_flash(:info, "Generator deleted successfully.")

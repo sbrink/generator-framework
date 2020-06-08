@@ -2,54 +2,37 @@ defmodule Platform.Core.Generators do
   @moduledoc """
   The Core.Generators context.
   """
-
-  import Ecto.Query, warn: false
-  alias Platform.Repo
-
   alias Platform.Core.Generators.Generator
+  @templates_dir "priv/templates"
+  @generator_config "gen.exs"
 
   @doc """
   Returns the list of generators.
-
-  ## Examples
-
-      iex> list_generators()
-      [%Generator{}, ...]
-
   """
-  def list_generators do
-    Repo.all(Generator)
+  def list do
+    "#{@templates_dir}/*/#{@generator_config}"
+    |> Path.wildcard()
+    |> Enum.map(fn file ->
+      file
+      |> Path.dirname()
+      |> Path.split()
+      |> List.last()
+      |> get!()
+    end)
   end
 
   @doc """
   Gets a single generator.
-
-  Raises `Ecto.NoResultsError` if the Generator does not exist.
-
-  ## Examples
-
-      iex> get_generator!(123)
-      %Generator{}
-
-      iex> get_generator!(456)
-      ** (Ecto.NoResultsError)
-
   """
-  def get_generator!(id), do: Repo.get!(Generator, id)
+  def get!(id) do
+    {result, _} = Code.eval_file("#{@templates_dir}/#{id}/#{@generator_config}")
+    result
+  end
 
   @doc """
   Creates a generator.
-
-  ## Examples
-
-      iex> create_generator(%{field: value})
-      {:ok, %Generator{}}
-
-      iex> create_generator(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
   """
-  def create_generator(attrs \\ %{}) do
+  def create(attrs \\ %{}) do
     %Generator{}
     |> Generator.changeset(attrs)
     |> Repo.insert()
@@ -57,17 +40,8 @@ defmodule Platform.Core.Generators do
 
   @doc """
   Updates a generator.
-
-  ## Examples
-
-      iex> update_generator(generator, %{field: new_value})
-      {:ok, %Generator{}}
-
-      iex> update_generator(generator, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
   """
-  def update_generator(%Generator{} = generator, attrs) do
+  def update(%Generator{} = generator, attrs) do
     generator
     |> Generator.changeset(attrs)
     |> Repo.update()
@@ -75,30 +49,15 @@ defmodule Platform.Core.Generators do
 
   @doc """
   Deletes a generator.
-
-  ## Examples
-
-      iex> delete_generator(generator)
-      {:ok, %Generator{}}
-
-      iex> delete_generator(generator)
-      {:error, %Ecto.Changeset{}}
-
   """
-  def delete_generator(%Generator{} = generator) do
+  def delete(%Generator{} = generator) do
     Repo.delete(generator)
   end
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking generator changes.
-
-  ## Examples
-
-      iex> change_generator(generator)
-      %Ecto.Changeset{data: %Generator{}}
-
   """
-  def change_generator(%Generator{} = generator, attrs \\ %{}) do
+  def change(%Generator{} = generator, attrs \\ %{}) do
     Generator.changeset(generator, attrs)
   end
 end
