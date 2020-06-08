@@ -1,0 +1,26 @@
+<h1>Listing Generators</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for generator <- @generators do %>
+    <tr>
+      <td><%= generator.name %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.generator_path(@conn, :show, generator) %></span>
+        <span><%= link "Edit", to: Routes.generator_path(@conn, :edit, generator) %></span>
+        <span><%= link "Delete", to: Routes.generator_path(@conn, :delete, generator), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Generator", to: Routes.generator_path(@conn, :new) %></span>

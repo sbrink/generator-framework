@@ -1,0 +1,13 @@
+<h1>Show Generator</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @generator.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.generator_path(@conn, :edit, @generator) %></span>
+<span><%= link "Back", to: Routes.generator_path(@conn, :index) %></span>
