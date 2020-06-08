@@ -61,6 +61,8 @@ defmodule PlatformWeb do
 
       import PlatformWeb.ErrorHelpers
       import PlatformWeb.Gettext
+
+      alias PlatformWeb.PageMeta
       alias PlatformWeb.Router.Helpers, as: Routes
     end
   end
