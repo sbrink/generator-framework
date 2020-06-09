@@ -13,10 +13,6 @@ defmodule PlatformWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-
-    # resources "/generators", GeneratorController do
-    #   resources "/templates", Generator.TemplateController, only: [:show, :edit, :update]
-    # end
   end
 
   forward "/quick_gen", Phoenix.QuickGenWeb.Router

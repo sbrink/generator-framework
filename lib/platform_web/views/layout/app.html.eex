@@ -14,8 +14,6 @@
     </header>
     <main role="main" class="container">
       <%= render "_flash_messages.html", conn: @conn %>
-      <%= render "_breadcrumb.html", conn: @conn %>
-      <%= content_tag :h1, page_meta(@conn).title, class: "h3 pb-4" %>
       <%= @inner_content %>
     </main>
   </body>
