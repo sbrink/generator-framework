@@ -4,8 +4,6 @@ defmodule Phoenix.QuickGenWeb.AssetController do
   def show(conn, %{"id" => "app.js"}) do
     js_path = Path.join(__DIR__, "../../../../priv/static/js/app.js")
 
-    IO.inspect(File.read!(js_path))
-
     conn
     |> put_resp_content_type("text/javascript")
     |> Plug.Conn.put_private(:plug_skip_csrf_protection, true)
