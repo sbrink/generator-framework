@@ -7,5 +7,6 @@
 //     import {Socket} from "phoenix"
 //     import socket from "./socket"
 //
-import "phoenix_html"
-import "./highlightjs-init"
+import "phoenix_html";
+import "./highlightjs-init";
+import "./codemirror-init";

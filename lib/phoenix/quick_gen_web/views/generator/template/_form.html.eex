@@ -6,7 +6,7 @@
 
   <div class="form-group">
     <%#= label @f, :contents %>
-    <%= textarea @f, :contents, class: "form-control", rows: 20, autofocus: true %>
+    <%= textarea @f, :contents, class: "form-control code-mirror-elixir", rows: 20, autofocus: true %>
     <%= error_tag @f, :contents %>
   </div>
 
