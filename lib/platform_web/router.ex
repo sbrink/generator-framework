@@ -1,5 +1,6 @@
 defmodule PlatformWeb.Router do
   use PlatformWeb, :router
+  import Phoenix.QuickGen.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,8 +15,10 @@ defmodule PlatformWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/generators", GeneratorController do
-      resources "/templates", Generator.TemplateController, only: [:show, :edit, :update]
-    end
+    quick_gen("/quick_gen")
+
+    # resources "/generators", GeneratorController do
+    #   resources "/templates", Generator.TemplateController, only: [:show, :edit, :update]
+    # end
   end
 end
