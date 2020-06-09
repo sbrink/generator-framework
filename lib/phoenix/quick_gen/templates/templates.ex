@@ -34,6 +34,7 @@ defmodule Phoenix.QuickGen.Templates do
     template
     |> Template.changeset(attrs, changeset_type)
     |> Ecto.Changeset.apply_action(:update)
+    |> write_template_contents()
   end
 
   @doc """
@@ -41,5 +42,16 @@ defmodule Phoenix.QuickGen.Templates do
   """
   def change(%Template{} = template, attrs \\ %{}, changeset_type) do
     Template.changeset(template, attrs, changeset_type)
+  end
+
+  # Private functions
+  defp write_template_contents({:ok, %Template{contents: contents} = template}) do
+    path = "priv/templates/#{template.generator_id}/#{template.id}"
+    File.write(path, contents)
+    {:ok, template}
+  end
+
+  defp write_template_contents({:error, error}) do
+    {:error, error}
   end
 end
