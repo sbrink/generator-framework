@@ -20,6 +20,8 @@ defmodule Phoenix.QuickGenWeb.Router do
 
     get "/", PageController, :index
 
+    resources "/assets", AssetController, only: [:show]
+
     resources "/generators", GeneratorController do
       resources "/templates", Generator.TemplateController, only: [:show, :edit, :update]
     end
