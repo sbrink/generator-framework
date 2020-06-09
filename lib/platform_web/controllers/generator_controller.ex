@@ -2,6 +2,7 @@ defmodule PlatformWeb.GeneratorController do
   use PlatformWeb, :controller
 
   alias Platform.Core.Generators
+  alias Platform.Core.Templates
   alias Platform.Core.Generators.Generator
 
   def index(conn, _params) do
@@ -28,7 +29,8 @@ defmodule PlatformWeb.GeneratorController do
 
   def show(conn, %{"id" => id}) do
     generator = Generators.get!(id)
-    render(conn, "show.html", generator: generator)
+    templates = Templates.list_for_generator(id)
+    render(conn, "show.html", generator: generator, templates: templates)
   end
 
   def edit(conn, %{"id" => id}) do

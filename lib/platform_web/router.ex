@@ -14,6 +14,8 @@ defmodule PlatformWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/generators", GeneratorController
+    resources "/generators", GeneratorController do
+      resources "/templates", Generator.TemplateController, except: [:index]
+    end
   end
 end
