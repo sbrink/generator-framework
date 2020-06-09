@@ -3,7 +3,6 @@ defmodule PlatformWeb.Generator.TemplateController do
 
   alias Platform.Core.Generators
   alias Platform.Core.Templates
-  alias Platform.Core.Templates.Template
 
   def show(conn, %{"generator_id" => generator_id, "id" => id}) do
     generator = Generators.get!(generator_id)
@@ -11,49 +10,25 @@ defmodule PlatformWeb.Generator.TemplateController do
     render(conn, "show.html", generator: generator, template: template)
   end
 
-  def new(conn, _params) do
-    changeset = Templates.change_template(%Template{})
-    render(conn, "new.html", changeset: changeset)
+  def edit(conn, %{"generator_id" => generator_id, "id" => id}) do
+    generator = Generators.get!(generator_id)
+    template = Templates.get!(generator_id, id)
+    changeset = Templates.change(template, :update)
+    render(conn, "edit.html", generator: generator, template: template, changeset: changeset)
   end
 
-  def create(conn, %{"template" => template_params}) do
-    case Templates.create_template(template_params) do
-      {:ok, template} ->
-        conn
-        |> put_flash(:info, "Template created successfully.")
-        |> redirect(to: Routes.template_path(conn, :show, template))
+  def update(conn, %{"generator_id" => generator_id, "id" => id, "template" => template_params}) do
+    generator = Generators.get!(generator_id)
+    template = Templates.get!(generator_id, id)
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
-    end
-  end
-
-  def edit(conn, %{"id" => id}) do
-    template = Templates.get!(id)
-    changeset = Templates.change_template(template)
-    render(conn, "edit.html", template: template, changeset: changeset)
-  end
-
-  def update(conn, %{"id" => id, "template" => template_params}) do
-    template = Templates.get!(id)
-
-    case Templates.update_template(template, template_params) do
+    case Templates.update(template, template_params, :update) do
       {:ok, template} ->
         conn
         |> put_flash(:info, "Template updated successfully.")
-        |> redirect(to: Routes.template_path(conn, :show, template))
+        |> redirect(to: Routes.generator_template_path(conn, :show, generator, template))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", template: template, changeset: changeset)
+        render(conn, "edit.html", generator: generator, template: template, changeset: changeset)
     end
-  end
-
-  def delete(conn, %{"id" => id}) do
-    template = Templates.get!(id)
-    {:ok, _template} = Templates.delete_template(template)
-
-    conn
-    |> put_flash(:info, "Template deleted successfully.")
-    |> redirect(to: Routes.template_path(conn, :index))
   end
 end

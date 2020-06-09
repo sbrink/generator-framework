@@ -26,4 +26,11 @@ defmodule Platform.Core.Templates do
   def get_file(%Template{} = template) do
     "priv/templates/#{template.generator_id}/#{template.id}"
   end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking template changes.
+  """
+  def change(%Template{} = template, attrs \\ %{}, changeset_type) do
+    Template.changeset(template, attrs, changeset_type)
+  end
 end

@@ -8,3 +8,4 @@
 //     import socket from "./socket"
 //
 import "phoenix_html"
+import "./highlightjs-init"

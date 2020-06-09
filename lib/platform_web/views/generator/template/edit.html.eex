@@ -1,3 +1,10 @@
-<%= render "_form.html", Map.put(assigns, :action, Routes.template_path(@conn, :update, @template)) %>
+<%= form_for @changeset, Routes.generator_template_path(@conn, :update, @generator, @template), fn f -> %>
+  <%= render "_form.html", Map.put(assigns, :f, f) %>
 
-<span><%= link "Back", to: Routes.template_path(@conn, :index) %></span>
+  <div>
+    <%= submit "Save", class: "btn btn-primary" %>
+    <span><%= link "Back", to: Routes.generator_path(@conn, :show, @generator), class: "btn btn-outline-secondary" %></span>
+  </div>
+
+<% end %>
+
