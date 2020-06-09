@@ -28,6 +28,15 @@ defmodule Platform.Core.Templates do
   end
 
   @doc """
+  Updates a template.
+  """
+  def update(%Template{} = template, attrs, changeset_type) do
+    template
+    |> Template.changeset(attrs, changeset_type)
+    |> Ecto.Changeset.apply_action(:update)
+  end
+
+  @doc """
   Returns an `%Ecto.Changeset{}` for tracking template changes.
   """
   def change(%Template{} = template, attrs \\ %{}, changeset_type) do

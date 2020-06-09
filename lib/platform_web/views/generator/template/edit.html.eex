@@ -5,6 +5,5 @@
     <%= submit "Save", class: "btn btn-primary" %>
     <span><%= link "Back", to: Routes.generator_path(@conn, :show, @generator), class: "btn btn-outline-secondary" %></span>
   </div>
-
 <% end %>
 
