@@ -1,8 +1,8 @@
-defmodule PlatformWeb.Generator.TemplateController do
-  use PlatformWeb, :controller
+defmodule Phoenix.QuickGenWeb.Generator.TemplateController do
+  use Phoenix.QuickGenWeb, :controller
 
-  alias Platform.Core.Generators
-  alias Platform.Core.Templates
+  alias Phoenix.QuickGen.Generators
+  alias Phoenix.QuickGen.Templates
 
   def show(conn, %{"generator_id" => generator_id, "id" => id}) do
     generator = Generators.get!(generator_id)

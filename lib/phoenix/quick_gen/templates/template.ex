@@ -1,4 +1,4 @@
-defmodule Platform.Core.Templates.Template do
+defmodule Phoenix.QuickGen.Templates.Template do
   use Ecto.Schema
   import Ecto.Changeset
 

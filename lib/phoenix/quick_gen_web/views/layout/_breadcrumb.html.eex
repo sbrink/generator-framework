@@ -1,0 +1,14 @@
+<%= if @conn.request_path != "/" do %>
+  <nav aria-label="breadcrumb" style="background: #fff">
+    <ol class="breadcrumb c-breadcrumb container">
+      <% breadcrumbs = [{"Home", "/"}] ++ breadcrumb_encode(page_meta(@conn)) %>
+      <%= for {{name, path}, index} <- Enum.with_index(breadcrumbs) do %>
+        <%= if length(breadcrumbs) == index + 1 do %>
+          <li class="breadcrumb-item active" aria-current="page"><%= name %></li>
+        <% else %>
+          <li class="breadcrumb-item"><%= link name, to: path || "" %></li>
+        <% end %>
+      <% end %>
+    </ol>
+  </nav>
+<% end %>

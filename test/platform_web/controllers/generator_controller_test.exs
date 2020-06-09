@@ -1,7 +1,7 @@
 defmodule PlatformWeb.GeneratorControllerTest do
   use PlatformWeb.ConnCase
 
-  alias Platform.Core.Generators
+  alias Phoenix.QuickGen.Generators
 
   @create_attrs %{name: "some name"}
   @update_attrs %{name: "some updated name"}
@@ -75,6 +75,7 @@ defmodule PlatformWeb.GeneratorControllerTest do
     test "deletes chosen generator", %{conn: conn, generator: generator} do
       conn = delete(conn, Routes.generator_path(conn, :delete, generator))
       assert redirected_to(conn) == Routes.generator_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.generator_path(conn, :show, generator))
       end

@@ -1,6 +1,6 @@
-defmodule Platform.Core.Templates do
-  alias Platform.Core.Generators
-  alias Platform.Core.Templates.Template
+defmodule Phoenix.QuickGen.Templates do
+  alias Phoenix.QuickGen.Generators
+  alias Phoenix.QuickGen.Templates.Template
 
   def list_for_generator(generator_id) do
     generator_id

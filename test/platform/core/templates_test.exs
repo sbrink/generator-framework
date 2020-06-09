@@ -1,10 +1,10 @@
-defmodule Platform.Core.TemplatesTest do
+defmodule Phoenix.QuickGen.TemplatesTest do
   use Platform.DataCase
 
-  alias Platform.Core.Templates
+  alias Phoenix.QuickGen.Templates
 
   describe "templates" do
-    alias Platform.Core.Templates.Template
+    alias Phoenix.QuickGen.Templates.Template
 
     @valid_attrs %{name: "some name"}
     @update_attrs %{name: "some updated name"}

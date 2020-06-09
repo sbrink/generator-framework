@@ -1,7 +1,7 @@
 defmodule PlatformWeb.TemplateControllerTest do
   use PlatformWeb.ConnCase
 
-  alias Platform.Core.Templates
+  alias Phoenix.QuickGen.Templates
 
   @create_attrs %{name: "some name"}
   @update_attrs %{name: "some updated name"}
@@ -75,6 +75,7 @@ defmodule PlatformWeb.TemplateControllerTest do
     test "deletes chosen template", %{conn: conn, template: template} do
       conn = delete(conn, Routes.template_path(conn, :delete, template))
       assert redirected_to(conn) == Routes.template_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.template_path(conn, :show, template))
       end

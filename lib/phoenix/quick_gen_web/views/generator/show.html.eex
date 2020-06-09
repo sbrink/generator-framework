@@ -1,0 +1,24 @@
+<div class="card mb-3">
+  <div class="card-header">Templates</div>
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for template <- @templates do %>
+      <tr>
+        <td><%= link template.file, to: Routes.generator_template_path(@conn, :show, @generator, template) %></td>
+        <td class="text-right">
+          <%= link "Edit", to: Routes.generator_template_path(@conn, :edit, @generator, template) %>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+</div>
+
+<span><%= link "Edit", to: Routes.generator_path(@conn, :edit, @generator), class: "btn btn-primary" %></span>
+<span><%= link "Back", to: Routes.generator_path(@conn, :index), class: "btn btn-outline-secondary" %></span>

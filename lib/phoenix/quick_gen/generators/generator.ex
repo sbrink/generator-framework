@@ -1,4 +1,4 @@
-defmodule Platform.Core.Generators.Generator do
+defmodule Phoenix.QuickGen.Generators.Generator do
   use Ecto.Schema
   import Ecto.Changeset
 

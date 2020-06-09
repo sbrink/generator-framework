@@ -1,8 +1,8 @@
-defmodule Platform.Core.Generators do
+defmodule Phoenix.QuickGen.Generators do
   @moduledoc """
   The Core.Generators context.
   """
-  alias Platform.Core.Generators.Generator
+  alias Phoenix.QuickGen.Generators.Generator
   @templates_dir "priv/templates"
   @generator_config "gen.exs"
 

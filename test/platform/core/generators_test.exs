@@ -1,10 +1,10 @@
-defmodule Platform.Core.GeneratorsTest do
+defmodule Phoenix.QuickGen.GeneratorsTest do
   use Platform.DataCase
 
-  alias Platform.Core.Generators
+  alias Phoenix.QuickGen.Generators
 
   describe "generators" do
-    alias Platform.Core.Generators.Generator
+    alias Phoenix.QuickGen.Generators.Generator
 
     @valid_attrs %{name: "some name"}
     @update_attrs %{name: "some updated name"}
