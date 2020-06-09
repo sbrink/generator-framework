@@ -12,12 +12,15 @@ defmodule Platform.Core.Templates do
   end
 
   def get!(generator_id, id) do
+    contents = File.read!("priv/templates/#{generator_id}/#{id}")
+
     generator_id
     |> list_for_generator()
     |> Enum.find(fn template ->
       template.id == id
     end)
     |> Map.put(:generator_id, generator_id)
+    |> Map.put(:contents, contents)
   end
 
   def get_file(%Template{} = template) do

@@ -7,5 +7,10 @@
 
 </ul>
 
+<pre>
+<%= @template.contents %>
+</pre>
+
+
 <span><%= link "Edit", to: Routes.generator_template_path(@conn, :edit, @generator, @template) %></span>
 <span><%= link "Back", to: Routes.generator_path(@conn, :show, @generator) %></span>

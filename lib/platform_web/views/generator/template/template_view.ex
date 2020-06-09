@@ -7,7 +7,7 @@ defmodule PlatformWeb.Generator.TemplateView do
   def page_meta("show.html", conn),
     do: %PageMeta{
       parent: GeneratorView.page_meta("show.html", conn),
-      title: "#{conn.assigns.template.file}",
+      title: "#{conn.assigns.generator.name} (#{conn.assigns.template.file})",
       path: Routes.generator_template_path(conn, :show, conn.assigns.generator, conn.assigns.template)
     }
 
